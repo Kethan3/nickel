@@ -1,36 +1,36 @@
 "use client";
 
-import { Container } from "@radix-ui/themes";
+import { Container, Flex, Text, Link as RadixLink } from "@radix-ui/themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default () => {
-  const path = usePathname();
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+];
 
-  const paths = {
-    home: "/",
-    about: "/about",
-    pricing: "/pricing",
-    blog: "/blog",
-  };
+export default function Navbar() {
+  const pathname = usePathname();
+
   return (
-    <Container>
-      <div>
-        <ul className="flex flex-row  items-center justify-center gap-8 py-4 ">
-          <li key={paths.home}>
-            <Link href="/">Home</Link>
-          </li>
-          <li key={paths.about}>
-            <Link href="/about">About</Link>
-          </li>
-          <li key={paths.pricing}>
-            <Link href="/pricing">Pricing</Link>
-          </li>
-          <li key={paths.blog}>
-            <Link href="/blog">Blog</Link>
-          </li>
-        </ul>
-      </div>
+    <Container size="3" px="4" py="3">
+      <Flex direction="row" justify="center" align="center" gap="5">
+        {navItems.map((item) => (
+          <RadixLink
+            key={item.href}
+            asChild
+            color={pathname === item.href ? "blue" : "gray"}
+            weight={pathname === item.href ? "bold" : "medium"}
+            underline="none"
+          >
+            <Link href={item.href}>
+              <Text>{item.label}</Text>
+            </Link>
+          </RadixLink>
+        ))}
+      </Flex>
     </Container>
   );
-};
+}
