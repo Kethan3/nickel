@@ -1,6 +1,6 @@
 "use client";
 
-import Container from "@/app/container/Container";
+import { Container } from "@radix-ui/themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

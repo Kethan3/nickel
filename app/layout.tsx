@@ -1,12 +1,10 @@
 import "./globals.css";
 import { Metadata } from "next";
 import { PropsWithChildren } from "react";
-
 import { Inter } from "next/font/google";
-import Container from "./container/Container";
 import NavigationBar from "./components/navigation-bar/navigation-bar";
-import { Theme } from "@radix-ui/themes";
-import { ThemeProvider } from "./components";
+import { Container, Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 
 const inter = Inter({
