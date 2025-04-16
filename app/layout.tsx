@@ -5,6 +5,8 @@ import { PropsWithChildren } from "react";
 import { Inter } from "next/font/google";
 import Container from "./container/Container";
 import NavigationBar from "./components/navigation-bar/navigation-bar";
+import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "./components";
 
 
 const inter = Inter({
@@ -16,23 +18,23 @@ export const metadata: Metadata = {
   openGraph: {
     title: " Nickel is an example project",
     description: "Nickel is an element",
-    images: {
-      url: "",
-      width: 1200,
-      height: 628,
-    },
+   
   },
 };
 
 const RootLayout = (props: PropsWithChildren) => {
   return (
-    <html >
+    <html suppressHydrationWarning>
       <body className={inter.className} >
+       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+       <Theme  accentColor="indigo">
         <div >
           <NavigationBar />
-          <div  />
           <Container >{props.children}</Container>
         </div>
+        </Theme>
+       </ThemeProvider>
+
       </body>
     </html>
   );
